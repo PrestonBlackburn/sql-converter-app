@@ -11,14 +11,12 @@
 	<meta name="description" content="Sql convert page" />
 </svelte:head>
 
-
-<div class="text-column" style="display:flex; justify-content:center; align-items:center;">
+<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; padding-top:100px">
 	<img src="convert_images/full_logo.svg" style="width:500px"/>
 
 	<p>
-		Secure. Open Source. Always Free. 
+		<b>Secure. Open Source. Always Free. </b>
 	</p>
-
 	<p>
 		Enter your SQL text and select the SQL Dialects or bulk upload files 
 	</p>
