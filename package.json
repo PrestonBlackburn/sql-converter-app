@@ -11,6 +11,9 @@
 	},
 	"devDependencies": {
 		"@smui/button": "^7.0.0-beta.14",
+		"@smui/common": "^7.0.0-beta.14",
+		"@smui/fab": "^7.0.0-beta.14",
+		"@smui/tooltip": "^7.0.0-beta.14",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.20.4",
@@ -31,6 +34,7 @@
 		"codemirror": "^6.0.1",
 		"i": "^0.3.7",
 		"pyodide": "^0.23.4",
-		"svelte-material-ui": "^7.0.0-beta.14"
+		"svelte-material-ui": "^7.0.0-beta.14",
+		"svrollbar": "^0.12.0"
 	}
 }

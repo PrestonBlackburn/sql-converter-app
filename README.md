@@ -1,24 +1,22 @@
 # SQL Converter App
 
-Overview
-- Uses WASM (Pyodide) to use python to convert sql in the browser. 
+A secure, open source, free SQL converter. Convert your SQL between dialects to your heart's content.
+
+Project Page for the SQL Converter App
+Check out the app here: `<placeholder>`
 
 
-# create-svelte
+## Overview
+- Svelte for frontend
+- Uses WASM (Pyodide) to use python to convert sql in the browser
+- The SQLGlot python project handles the sql dialect conversions
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## Creating a project
+## Hosting
+AWS Amplify
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
 
 ## Developing
 

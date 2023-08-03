@@ -12,21 +12,29 @@
     import Button, { Label } from '@smui/button';
     import Select, { Option } from '@smui/select';
     import CircularProgress from '@smui/circular-progress';
+    import Tooltip, { Wrapper } from '@smui/tooltip';
+    import Fab from '@smui/fab';
+    import { Icon } from '@smui/common';
+
+    import Modal from './Modal.svelte';
+
 
     //import convert_sql from './converter.js';
     import { get } from 'svelte/store';
     import { pyodide_status, pyodide_load } from './stores.js';
 
     // for holding input
-    let docStore
+    let docStore;
 
     // for updating output
-    let store_output
-    let store_output_status = false
+    let store_output;
+    let store_output_status = false;
 
     let display_div = "display: none;";
 
     let default_sql = `SELECT * FROM TABLE1 \n\n\n\n\n\n\n\n\n\n\n\n`
+
+    let showModal = false;
 
     function changeHandler({detail: {tr}}) {
         console.log('change', tr.changes.toJSON())
@@ -122,13 +130,15 @@
         $: display_loading = display_loading;
         
 
-    let supported_dialects = ['tsql', 'snowflake', 'oracle'];
+    let supported_dialects = ['tsql', 'snowflake', 'oracle', 'teradata', 'bigquery', 'databricks', 'sqlite', 'mysql', 'postgres'];
     let input_dialect = 'tsql';
     let target_dialect = 'snowflake';
 
 </script>
  
+<Modal bind:showModal>
 
+</Modal>
 
 
 <!-- just styling stuff here: -->
@@ -136,9 +146,26 @@
 <div id="codespace" style="display:flex; flex-direction:column;">
 
     <div style="display:flex; flex-grow:1; flex-direction:column; width:90%; padding: 20px;">
-        <h3>
-            SQL Text Input
-        </h3>
+
+        <div style="display:flex; flex-direction:row; justify-content:space-between;">
+            <h3>
+                SQL Text Input
+            </h3>
+
+            <Wrapper style="padding:20px">
+                <Fab on:click={() => (showModal = true)} mini>
+                <Icon class="material-icons">help</Icon>
+                </Fab>
+                <Tooltip>
+                    Click to show the glossary of sql dialects
+                </Tooltip>
+            </Wrapper>
+
+        </div>
+
+
+        
+
         <div class="code-mirror-container">
             <CodeMirror doc={default_sql}
                 bind:docStore={docStore}
@@ -150,11 +177,11 @@
         </div>
     </div>
 
-    <div>
-        Guide - tooltip / glossary
-    </div>
+
 
     <div style="padding: 20px">
+
+
         <Select bind:value = {input_dialect} label = "Select Input Dialect">
             {#each supported_dialects as dialect}
             <Option value = {dialect}> {dialect} </Option>
@@ -166,6 +193,9 @@
             <Option value = {dialect}> {dialect} </Option>
             {/each}
         </Select>  
+
+
+
 
         <Button on:click={ convert_sql( $docStore, input_dialect, target_dialect ) } variant="raised">
             <Label> Convert </Label>
@@ -241,6 +271,10 @@
     /* For the returned SQL */
 
 	h3 {
+		color: white;
+	}
+
+    h2 {
 		color: white;
 	}
 

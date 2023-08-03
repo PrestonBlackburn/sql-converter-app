@@ -31,7 +31,7 @@
     }
 
 
-    let supported_dialects = ['tsql', 'snowflake', 'oracle'];
+    let supported_dialects = ['tsql', 'snowflake', 'oracle', 'teradata', 'bigquery', 'databricks', 'sqlite', 'mysql', 'postgres'];
     let input_dialect = 'tsql';
     let target_dialect = 'snowflake';
 
