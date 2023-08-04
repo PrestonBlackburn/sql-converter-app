@@ -27,7 +27,8 @@ for item in sql_file_namespace:
 
     converted_code = sqlglot.transpile(item.file_contents,
                                        read=item.input_dialect,
-                                       write=item.target_dialect)[0]
+                                       write=item.target_dialect,
+                                       pretty=True)[0]
 
     converted_dict = {"file_name": item.file_name, "converted_sql": converted_code }
     print("python:", converted_dict)
