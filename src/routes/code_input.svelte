@@ -32,7 +32,41 @@
 
     let display_div = "display: none;";
 
-    let default_sql = `SELECT * FROM TABLE1 \n\n\n\n\n\n\n\n\n\n\n\n`
+    let default_sql = `-- Tsql Example Query:
+    SELECT A.MarketId
+    ,a.Id
+    ,a.ItemNum
+    ,a.FirstDateTime
+    ,a.UpdatedDate
+,sum(T.[SalesAmt]) AS CompletedSales
+FROM Sales.Item AS a WITH (NOLOCK)
+cross apply  (
+  SELECT t.[ItemId]
+,t.[MarketId]
+,t.[ItemNum]
+,SUM(t.[SalesAmt]) AS [SalesAmt]
+FROM Sales.ItemSummaryTotal 
+as T WITH (NOLOCK)
+where  a.id = T.Itemid
+ and t.[ItemType] = 'Large'
+GROUP BY t.[ItemId]
+,t.[MarketId]
+,t.[ItemNum]
+) AS T
+WHERE
+    a.UpdatedDate is not null
+    --filters for testing
+    and a.FirstDateTime >='2022-02-01'
+    and a.FirstDateTime <'2022-01-01'
+AND A.MarketId = '01'
+    and a.UpdatedDate >= '2022-01-01'
+group by A.MarketId,
+ a.id,
+ a.ItemNum,
+ a.FirstDateTime,
+ a.UpdatedDate
+order by 2;` + `\n\n\n\n`
+//    let default_sql = `SELECT * FROM TABLE1 \n\n\n\n\n\n\n\n\n\n\n\n`
 
     let showModal = false;
 

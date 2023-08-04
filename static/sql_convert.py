@@ -22,7 +22,8 @@ print(sql_namespace.write_dialect)
 try:
     converted_code = sqlglot.transpile(sql_namespace.sql_text,
                                        read=sql_namespace.read_dialect,
-                                       write=sql_namespace.write_dialect)[0]
+                                       write=sql_namespace.write_dialect,
+                                       pretty=True)[0]
     #converted_code = sqlglot.transpile(js.sql_query, read="tsql", write="snowflake")[0]
 except Exception as e:
     converted_code = e
